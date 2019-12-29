@@ -1,0 +1,21 @@
+version: '3.7'
+
+services:
+  luckylibrary-db:
+    secrets:
+      - db_pass
+      - db_username
+    image: mysql:8.0.18
+    environment:
+      MYSQL_ROOT_PASSWORD: db_pass
+      MYSQL_DATABASE: luckylibrary
+      # MYSQL_USER: db_username 
+      # MYSQL_PASSWORD: db_pass
+    ports:
+      - "3306:3306"
+
+secrets:
+  db_pass:
+    file: ./db_pass.txt
+  db_username:
+    file: ./db_username.txt
