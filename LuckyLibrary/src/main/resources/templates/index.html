@@ -4,88 +4,41 @@
   -->
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Lucky Library</title>
-    <!-- Bulma Version 0.8.x-->
-    <link rel='stylesheet prefetch' href='https://unpkg.com/bulma@0.8.0/css/bulma.min.css'>
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" th:href="@{/css/app.css}">
-
-</head>
+<head th:replace="_layout::head"></head>
 <body>
 <div id="app">
-    <nav class="navbar has-shadow">
-        <div class="container">
-            <div class="navbar-brand"><a class="navbar-item" href="../">
-<!--                <img src="http://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox"/></a>-->
-                <span class="title">Lucky Library</span>
-            </div>
-            <div class="navbar-end">
-                <a class="navbar-item is-active" href="/">Home</a>
-                <a class="navbar-item" href="/books">Books</a>
-                <a class="navbar-item" href="/authors">Authors</a>
-                <a class="navbar-item" href="/my-account">My Account</a>
-            </div>
-        </div>
-    </nav>
-    <section class="hero is-info">
-        <div class="hero-body">
-            <div class="container">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="content">
-                            <div class="control has-icons-left has-icons-right search-field">
-                                <input class="input is-large" type="text" placeholder="" v-model="search" /><span class="icon is-medium is-left"><i class="fa fa-search"></i></span>
-                                <span class="icon is-medium is-right">
-                    <i class="delete is-medium clear-search" @click="clearSearchField()" v-if="search.length"></i>
-                  </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <div class="box cta">
-        <p class="has-text-centered">
-            Lucky Library is closed on <span class="tag is-link">Sundays</span>
-        </p>
-    </div>
-    <!-- Loop through the parent array -->
+
+    <th:block th:replace="_layout::navbar"></th:block>
+    <th:block th:replace="_layout::search"></th:block>
+    <th:block th:replace="_layout::announcement('Lucky Library is closed on ','Sundays')"></th:block>
+
     <section class="container cards-container">
         <div class="title">New Books...</div> <hr />
         <div class="columns">
-            <div class="column is-one-quarter">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="media">
-                            <div class="media-left">
-                                <figure class="image is-128x128">
-                                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                                </figure>
-                            </div>
-                            <div class="media-content">
-                                <p class="title is-4">John Smith</p>
-                                <p class="subtitle is-6">@johnsmith</p>
-                            </div>
-                        </div>
-
-                        <div class="content">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                            <a href="#">#css</a> <a href="#">#responsive</a>
-                            <br>
-                            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                        </div>
-                    </div>
-                    <footer class="card-footer">
-                        <a href="#" class="card-footer-item">Save</a>
-                        <a href="#" class="card-footer-item">Edit</a>
-                        <a href="#" class="card-footer-item">Delete</a>
-                    </footer>
-                </div>
-            </div>
+            <book-card
+                    img-Src="https://bulma.io/images/placeholders/96x96.png"
+                    title="Musa Ugurlu"
+                    sub-Title="Author"
+                    content="Book Description goes here!!!"
+            ></book-card>
+            <book-card
+                    img-Src="https://bulma.io/images/placeholders/96x96.png"
+                    title="Musa Ugurlu"
+                    sub-Title="Author"
+                    content="Book Description goes here!!!"
+            ></book-card>
+            <book-card
+                    img-Src="https://bulma.io/images/placeholders/96x96.png"
+                    title="Musa Ugurlu"
+                    sub-Title="Author"
+                    content="Book Description goes here!!!"
+            ></book-card>
+            <book-card
+                    img-Src="https://bulma.io/images/placeholders/96x96.png"
+                    title="Musa Ugurlu"
+                    sub-Title="Author"
+                    content="Book Description goes here!!!"
+            ></book-card>
         </div>
     </section>
     <p>&nbsp;</p>
@@ -94,54 +47,18 @@
     <section class="container cards-container">
         <div class="title">Most Popular Books...</div> <hr />
         <div class="columns">
-            <div class="column is-one-quarter">
-                <div class="card">
-                    <div class="card-content">
-                        <div class="media">
-                            <div class="media-left">
-                                <figure class="image is-128x128">
-                                    <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
-                                </figure>
-                            </div>
-                            <div class="media-content">
-                                <p class="title is-4">John Smith</p>
-                                <p class="subtitle is-6">@johnsmith</p>
-                            </div>
-                        </div>
-
-                        <div class="content">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                            Phasellus nec iaculis mauris. <a>@bulmaio</a>.
-                            <a href="#">#css</a> <a href="#">#responsive</a>
-                            <br>
-                            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                        </div>
-                    </div>
-                    <footer class="card-footer">
-                        <a href="#" class="card-footer-item">Save</a>
-                        <a href="#" class="card-footer-item">Edit</a>
-                        <a href="#" class="card-footer-item">Delete</a>
-                    </footer>
-                </div>
-            </div>
+            <book-card
+                    img-Src="https://bulma.io/images/placeholders/96x96.png"
+                    title="Musa Ugurlu"
+                    sub-Title="@musaugurlu"
+                    content="Book Description goes here!!!"
+            ></book-card>
         </div>
     </section>
 </div>
-<footer>
-    <div class="box cta">
-        <div class="columns is-mobile is-centered">
-            <div class="field is-grouped is-grouped-multiline">
-                <div class="control">
-                    <div class="tags has-addons"><a class="tag is-link" href="https://github.com/BulmaTemplates/bulma-templates">Bulma Templates</a><span class="tag is-light">Daniel Supernault</span></div>
-                </div>
-                <div class="control">
-                    <div class="tags has-addons"><a class="tag is-link">The source code is licensed</a><span class="tag is-light">MIT  <i class="fa fa-github"></i></span></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</footer>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js'></script>
-<script th:src="@{/js/app.js}"></script>
+
+<th:block th:replace="_layout::footer"></th:block>
+<th:block th:replace="_layout::script"></th:block>
+
 </body>
 </html>
