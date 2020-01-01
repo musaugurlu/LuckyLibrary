@@ -1,6 +1,5 @@
 HELP.md
 target/
-dist/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**
 !**/src/test/**
@@ -27,7 +26,6 @@ docker-compose.dbonly.yml
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
-/dist/
 /nbdist/
 /.nb-gradle/
 build/
