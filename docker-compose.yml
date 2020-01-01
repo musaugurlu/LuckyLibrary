@@ -8,8 +8,8 @@ services:
     image: luckylibrary-app
     ports:
       - "8090:8090"
-    networks:
-      - backend
+    # networks:
+    #   - backend
     depends_on:
       - luckylibrary-db
     environment:
@@ -20,7 +20,7 @@ services:
   luckylibrary-db:
     image: mysql:8.0.18
     ports:
-      - "3306:3306"
+      - "3308:3306"
     restart: always
     environment:
       MYSQL_DATABASE: ${DB_NAME}
@@ -29,11 +29,11 @@ services:
       MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
     volumes:
       - db-data:/var/lib/mysql
-    networks:
-      - backend
+    # networks:
+    #   - backend
 
 volumes:
   db-data:
 
-networks:
-  backend:
+# networks:
+#   backend:
