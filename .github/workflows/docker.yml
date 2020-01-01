@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DB_NAME: ${{ secret.MYSQL_DATABASE }}
+      DB_NAME: ${{ secrets.MYSQL_DATABASE }}
       DB_USERNAME: ${{ secrets.DATASOURCE_USERNAME }}
       DB_PASSWORD: ${{ secrets.DATASOURCE_PASSWORD }}
 
