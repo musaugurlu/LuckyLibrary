@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: LuckyLibrary
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: <<PROD DB JDBC URL>>
+    username: <<PROD DB USERNAME>>
+    password: <<PROD DB PASS>>

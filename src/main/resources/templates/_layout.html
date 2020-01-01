@@ -1,0 +1,86 @@
+<!--
+  ~ Copyright (c) 2019.
+  ~ Written by Musa Ugurlu - 12/30/19, 7:44 PM
+  -->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <title>Lucky Library</title>
+    <link rel='stylesheet prefetch' href='https://unpkg.com/bulma@0.8.0/css/bulma.min.css'>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+
+</head>
+<body>
+    <nav class="navbar has-shadow" th:fragment="navbar">
+        <div class="container">
+            <div class="navbar-brand">
+                <a class="navbar-item" href="../">
+                    <span class="title">Lucky Library</span>
+                </a>
+            </div>
+            <div class="navbar-end">
+                <a class="navbar-item is-active" href="/">Home</a>
+                <a class="navbar-item" href="/books">Books</a>
+                <a class="navbar-item" href="/authors">Authors</a>
+                <a class="navbar-item" href="/my-account">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero is-info" th:fragment="search">
+        <div class="hero-body">
+            <div class="container">
+                <div class="card">
+                    <div class="card-content">
+                        <div class="content">
+                            <div class="control has-icons-left has-icons-right search-field">
+                                <input class="input is-large" type="text" placeholder="" v-model="search" />
+                                <span class="icon is-medium is-left"><i class="fa fa-search"></i></span>
+                                <span class="icon is-medium is-right">
+                                    <i class="delete is-medium clear-search" @click="clearSearchField()" v-if="search.length"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="box cta" th:fragment="announcement(msg, tag)">
+        <p class="has-text-centered">
+            <span th:text="${msg}"></span> <span class="tag is-link" th:text="${tag}"></span>
+        </p>
+    </div>
+
+    <footer th:fragment="footer">
+        <div class="box cta">
+            <div class="columns is-mobile is-centered">
+                <div class="field is-grouped is-grouped-multiline">
+                    <div class="control">
+                        <div class="tags has-addons">
+                            <a class="tag is-link" href="https://github.com/BulmaTemplates/bulma-templates">Bulma Templates</a>
+                            <span class="tag is-light">Daniel Supernault</span>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <div class="tags has-addons">
+                            <a class="tag is-link">The source code is licensed</a>
+                            <span class="tag is-light">MIT  <i class="fa fa-github"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <th:block th:fragment="script">
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js'></script>
+        <script th:src="@{/js/app.js}"></script>
+    </th:block>
+
+</body>
+</html>

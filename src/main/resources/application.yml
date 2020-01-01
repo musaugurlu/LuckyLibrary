@@ -1,0 +1,24 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: LuckyLibrary
+  profiles:
+    active: dev # Will be changed to prod when the app is in prod
+  jpa:
+    open-in-view: false
+
+##### application-dev.yml #####
+#spring:
+#  application:
+#    name: LuckyLibrary
+#  jpa:
+#    open-in-view: false
+#    hibernate:
+#      ddl-auto: update
+#  datasource:
+#    url: 'jdbc:mysql://${MYSQL_HOST:localhost}:3306/luckylibrary'
+#    username: DB USERNAME
+#    password: DB PASS
+###############################
