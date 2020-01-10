@@ -10,6 +10,7 @@ import com.musaugurlu.luckylibrary.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -24,8 +25,12 @@ public class HomeController {
 
     @GetMapping
     public String index(Model model) {
-        Optional<List<Book>> newBooks = bookService.getNewBooks();
-        model.addAttribute(newBooks);
+        Optional<List<Book>> optionalNewBooks = bookService.getNewBooks();
+
+        if (optionalNewBooks.isPresent()) {
+            List<Book> newBooks = optionalNewBooks.get();
+            model.addAttribute("newBooks", newBooks);
+        }
         return "index";
     }
 

@@ -19,13 +19,12 @@
         display: grid;
         grid-template-columns:repeat(auto-fill,minmax(25em,1fr));
         grid-gap: 1em;">
-            <book-card
-                    img-Src="https://bulma.io/images/placeholders/96x96.png"
-                    title="Musa Ugurlu"
-                    sub-Title="Author"
-                    content="Book Description goes here!!!"
+            <book-card th:each="book : ${newBooks}"
+                    th:img-Src="${book.imgUrl}"
+                    th:title="${book.title}"
+                    th:sub-Title="'By ' + ${book.author}"
+                    th:content="${book.description}"
             ></book-card>
-
         </div>
     </section>
     <p>&nbsp;</p>

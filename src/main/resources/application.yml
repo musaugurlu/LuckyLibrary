@@ -18,7 +18,7 @@ spring:
 #    hibernate:
 #      ddl-auto: update
 #  datasource:
-#    url: 'jdbc:mysql://${MYSQL_HOST:localhost}:3306/luckylibrary'
+#    url: DB URL
 #    username: DB USERNAME
 #    password: DB PASS
 ###############################

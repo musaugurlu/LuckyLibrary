@@ -47,7 +47,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Optional<List<Book>> getNewBooks() {
-        return bookRepository.findTop6By();
+        return bookRepository.findTop6ByOrderByPublishedDateDesc();
     }
 
 }

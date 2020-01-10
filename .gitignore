@@ -4,7 +4,6 @@ target/
 !**/src/main/**
 !**/src/test/**
 **/application-dev.yml
-/db/**
 docker-compose.dev.yml
 docker-compose.dbonly.yml
 

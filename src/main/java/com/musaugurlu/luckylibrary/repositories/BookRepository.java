@@ -20,5 +20,5 @@ public interface BookRepository extends JpaRepository<Book, UUID> {
 
     List<Book> findBooksByTitleOrderByTitle(String title);
 
-    Optional<List<Book>> findTop6By();
+    Optional<List<Book>> findTop6ByOrderByPublishedDateDesc();
 }

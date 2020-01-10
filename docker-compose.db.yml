@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  luckylibrary-db:
+    image: mysql:8.0.18
+    ports:
+      - "3308:3306"
+    restart: always
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db-data:/var/lib/mysql
+
+volumes:
+  db-data:

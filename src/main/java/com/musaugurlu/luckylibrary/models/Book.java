@@ -10,8 +10,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Date;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -40,10 +40,10 @@ public class Book {
     Branch branch;
 
     @CreationTimestamp
-    Timestamp created_at;
+    Timestamp createdDate;
 
     @UpdateTimestamp
-    Timestamp updated_at;
+    Timestamp updatedDate;
 
     public Book() {
     }
@@ -140,19 +140,19 @@ public class Book {
         this.branch = branch;
     }
 
-    public Timestamp getCreated_at() {
-        return created_at;
+    public Timestamp getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCreated_at(Timestamp created_at) {
-        this.created_at = created_at;
+    public void setCreatedDate(Timestamp createdDate) {
+        this.createdDate = createdDate;
     }
 
-    public Timestamp getUpdated_at() {
-        return updated_at;
+    public Timestamp getUpdatedDate() {
+        return updatedDate;
     }
 
-    public void setUpdated_at(Timestamp updated_at) {
-        this.updated_at = updated_at;
+    public void setUpdatedDate(Timestamp updatedDate) {
+        this.updatedDate = updatedDate;
     }
 }
