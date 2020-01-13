@@ -23,4 +23,6 @@ public interface BookService {
     Optional<Book> findFirstBy();
 
     Optional<List<Book>> getNewBooks();
+
+    Optional<List<Book>> getPopularBooks();
 }

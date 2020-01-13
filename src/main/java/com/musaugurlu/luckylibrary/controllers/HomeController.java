@@ -26,13 +26,29 @@ public class HomeController {
     @GetMapping
     public String index(Model model) {
         Optional<List<Book>> optionalNewBooks = bookService.getNewBooks();
+        Optional<List<Book>> optionalPopularBooks = bookService.getPopularBooks();
 
         if (optionalNewBooks.isPresent()) {
             List<Book> newBooks = optionalNewBooks.get();
             model.addAttribute("newBooks", newBooks);
         }
+
+        if (optionalPopularBooks.isPresent()) {
+            List<Book> popularBooks = optionalPopularBooks.get();
+            model.addAttribute("popularBooks", popularBooks);
+        }
+
         return "index";
     }
+
+    @GetMapping("/books")
+    public String books(Model model) {
+        return "books";
+    }
+
+
+
+
 
     @GetMapping("/data")
     @ResponseBody

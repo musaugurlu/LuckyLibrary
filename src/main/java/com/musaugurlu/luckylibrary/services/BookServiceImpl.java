@@ -50,6 +50,9 @@ public class BookServiceImpl implements BookService {
         return bookRepository.findTop6ByOrderByPublishedDateDesc();
     }
 
+    @Override
+    public Optional<List<Book>> getPopularBooks() { return bookRepository.findTop6ByOrderByPublishedDateDesc(); }
+
 }
 
 

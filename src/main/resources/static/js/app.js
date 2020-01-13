@@ -1,5 +1,6 @@
-const bookCard = {
+let bookCard = {
     props: [
+        'id',
         'imgSrc',
         'title',
         'subTitle',
@@ -11,28 +12,39 @@ const bookCard = {
             <div class="media">
                 <div class="media-left">
                     <figure class="image is-128x128">
-                        <img :src="imgSrc" alt="Book">
+                        <a :href="'/books/'+id">
+                            <img :src="bookImage(imgSrc)" alt="Book" style="height: 120%;">
+                        </a>
                     </figure>
                 </div>
                 <div class="media-content">
-                    <p class="title is-4">{{title}}</p>
+                    <p class="title is-4"><a :href="'/books/'+id">{{title}}</a></p>
                     <p class="subtitle is-6">{{subTitle}}</p>
                 </div>
             </div>
 
-            <div class="content">
-                {{content}}
-                <br>
-                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+            <div class="content" style="margin-bottom: 2em">
+                {{ shortenContent(content) }}
             </div>
         </div>
         <footer class="card-footer">
-            <a href="#" class="card-footer-item">Save</a>
-            <a href="#" class="card-footer-item">Edit</a>
-            <a href="#" class="card-footer-item">Delete</a>
+            <a href="#" class="card-footer-item">Details</a>
         </footer>
     </div>
-    `
+    `,
+    methods: {
+        shortenContent(text) {
+            if (text && text.length > 250) {
+                return text.substr(0,250) + ' ...';
+            } else {
+                return text
+            }
+
+        },
+        bookImage(image) {
+            return image ? image : "img/noimage.jpg";
+        }
+    }
 }
 
 var App = new Vue({
@@ -40,12 +52,10 @@ var App = new Vue({
     components: {
         'book-card' : bookCard
     },
-    data() {
-        return {
-            search: "",
-            title: "Books",
-            cards: []
-        }
+    data: {
+        search: "",
+        title: "Books",
+        cards: []
     },
 
 
@@ -70,7 +80,7 @@ var App = new Vue({
             this.cards.splice(this.cards.indexOf(card), 1)
         },
         clearSearchField () {
-            this.search = ''
+            this.search = this.shortenContent("Search")
         }
     }
 });
