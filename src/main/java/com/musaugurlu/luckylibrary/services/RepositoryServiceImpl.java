@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RepositoryServiceImpl implements RepositoryService {
@@ -20,8 +21,8 @@ public class RepositoryServiceImpl implements RepositoryService {
     RepositoryRepository repositoryRepository;
 
     @Override
-    public Repository findById(Long id) {
-        return repositoryRepository.findById(id).get();
+    public Optional<Repository> findById(Long id) {
+        return repositoryRepository.findById(id);
     }
 
     @Override

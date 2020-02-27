@@ -38,6 +38,7 @@
         grid-template-columns:repeat(auto-fill,minmax(25em,1fr));
         grid-gap: 1em;">
             <book-card th:each="book : ${popularBooks}"
+                       th:id="${book.id}"
                        th:img-Src="${book.imgUrl}"
                        th:title="${book.title}"
                        th:sub-Title="'By ' + ${book.author}"

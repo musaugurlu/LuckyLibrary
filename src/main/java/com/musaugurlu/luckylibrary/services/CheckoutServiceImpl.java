@@ -18,8 +18,8 @@ public class CheckoutServiceImpl implements CheckoutService {
     CheckoutRepository checkoutRepository;
 
     @Override
-    public Checkout findById(Long id) {
-        return checkoutRepository.findById(id).get();
+    public Optional<Checkout> findById(Long id) {
+        return checkoutRepository.findById(id);
     }
 
     @Override

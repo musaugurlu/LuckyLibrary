@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -20,8 +21,8 @@ public class PatronServiceImpl implements PatronService {
     PatronRepository patronRepository;
 
     @Override
-    public Patron findById(UUID id) {
-        return patronRepository.findById(id).get();
+    public Optional<Patron> findById(UUID id) {
+        return patronRepository.findById(id);
     }
 
     @Override

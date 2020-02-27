@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CheckoutService {
-    Checkout findById(Long id);
+    Optional<Checkout> findById(Long id);
 
     List<Checkout> findAll();
 }

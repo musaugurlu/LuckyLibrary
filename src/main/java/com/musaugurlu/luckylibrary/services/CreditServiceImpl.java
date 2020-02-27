@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CreditServiceImpl implements CreditService {
@@ -20,8 +21,8 @@ public class CreditServiceImpl implements CreditService {
     CreditRepository creditRepository;
 
     @Override
-    public Credit findById(Long id) {
-        return creditRepository.findById(id).get();
+    public Optional<Credit> findById(Long id) {
+        return creditRepository.findById(id);
     }
 
     @Override

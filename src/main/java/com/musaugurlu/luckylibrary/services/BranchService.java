@@ -8,9 +8,10 @@ package com.musaugurlu.luckylibrary.services;
 import com.musaugurlu.luckylibrary.models.Branch;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface BranchService {
-    Branch findById(Long id);
+    Optional<Branch> findById(Long id);
 
     List<Branch> findAll();
 }

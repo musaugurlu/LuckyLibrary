@@ -9,9 +9,10 @@ import com.musaugurlu.luckylibrary.models.Credit;
 import com.musaugurlu.luckylibrary.models.Patron;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CreditService {
-    Credit findById(Long id);
+    Optional<Credit> findById(Long id);
 
     List<Credit> findAll();
 

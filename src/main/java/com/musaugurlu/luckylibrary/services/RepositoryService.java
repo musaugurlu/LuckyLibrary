@@ -9,9 +9,10 @@ import com.musaugurlu.luckylibrary.models.Book;
 import com.musaugurlu.luckylibrary.models.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface RepositoryService {
-    Repository findById(Long id);
+    Optional<Repository> findById(Long id);
 
     List<Repository> findAll();
 

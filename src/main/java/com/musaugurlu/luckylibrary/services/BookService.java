@@ -12,7 +12,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface BookService {
-    Book findById(UUID id);
+    Optional<Book> findById(UUID id);
 
     List<Book> findAll();
 

@@ -10,6 +10,7 @@ import com.musaugurlu.luckylibrary.repositories.BranchRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.Optional;
 
 public class BranchServiceImpl implements BranchService {
 
@@ -17,8 +18,8 @@ public class BranchServiceImpl implements BranchService {
     BranchRepository branchRepository;
 
     @Override
-    public Branch findById(Long id) {
-        return branchRepository.findById(id).get();
+    public Optional<Branch> findById(Long id) {
+        return branchRepository.findById(id);
     }
 
     @Override
