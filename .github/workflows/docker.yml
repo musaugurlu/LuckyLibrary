@@ -9,20 +9,12 @@ jobs:
 
     env:
       DB_URL: ${{ secrets.DATASOURCE_URL }}
-      DB_NAME: ${{ secrets.MYSQL_DATABASE }}
-      DB_USERNAME: ${{ secrets.DATASOURCE_USERNAME }}
-      DB_PASSWORD: ${{ secrets.DATASOURCE_PASSWORD }}
+      MYSQL_DBNAME: ${{ secrets.MYSQL_DATABASE }}
+      MYSQL_DBUSER: ${{ secrets.DATASOURCE_USERNAME }}
+      MYSQL_DBPASS: ${{ secrets.DATASOURCE_PASSWORD }}
 
     steps:
     - uses: actions/checkout@v1
-    - name: Bring DB online
-      run: docker-compose -f ./docker-compose.db.yml up -d
-    - name: Maven Build
-      run: |
-        mvn clean
-        mvn package
-    - name: Bring DB offline
-      run: docker-compose -f ./docker-compose.db.yml down
     - name: Docker compose Build
       run: docker-compose build
     - name: Docker compose up
