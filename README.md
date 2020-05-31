@@ -1,3 +1,0 @@
-# LuckyLibrary
-
-Under Development

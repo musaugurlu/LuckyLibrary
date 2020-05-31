@@ -1,39 +1,53 @@
-version: '3.7'
+version: '3'
 
 services:
-  luckylibrary-app:
+  luckylibrary-backend:
     build:
-      context: ./
+      context: ./backend/
       dockerfile: Dockerfile
-    image: luckylibrary-app
+    image: luckylibrary-backend
     ports:
       - "8090:8090"
-    # networks:
-    #   - backend
-    depends_on:
+    networks:
+      - backend
+    links:
       - luckylibrary-db
     environment:
-      SPRING_DATASOURCE_URL: ${DB_URL}
-      SPRING_DATASOURCE_USERNAME: ${DB_USERNAME}
-      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+      SPRING_DATASOURCE_URL: 'jdbc:mysql://luckylibrary-db:3306/luckylibrary?characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true'
+      SPRING_DATASOURCE_USERNAME: ${MYSQL_DBUSER}
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_DBPASS}
 
+  luckylibrary-frontend:
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    image: luckylibrary-frontend
+    ports:
+      - "8080:80"
+    networks:
+      - frontend
+      - backend
+    links:
+      - luckylibrary-backend
+  
   luckylibrary-db:
     image: mysql:8.0.18
     ports:
-      - "3308:3306"
+      - "3306:3306"
     restart: always
     environment:
-      MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_USER: ${DB_USERNAME}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DBNAME}
+      MYSQL_USER: ${MYSQL_DBUSER}
+      MYSQL_PASSWORD: ${MYSQL_DBPASS}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_DBPASS}
     volumes:
       - db-data:/var/lib/mysql
-    # networks:
-    #   - backend
+    networks:
+      - backend
 
 volumes:
   db-data:
 
-# networks:
-#   backend:
+networks:
+  backend:
+  frontend:

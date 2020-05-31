@@ -1,0 +1,10 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: LuckyLibrary
+  profiles:
+    active: prod # Will be changed to prod when the app is in prod
+  jpa:
+    open-in-view: false

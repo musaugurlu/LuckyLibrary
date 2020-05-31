@@ -1,33 +1,5 @@
-HELP.md
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**
-!**/src/test/**
-**/application-dev.yml
 docker-compose.dev.yml
-docker-compose.dbonly.yml
-
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-
-### IntelliJ IDEA ###
+*.code-workspace
+**/docker-compose.dbonly.yml
 .idea
-*.iws
-*.iml
-*.ipr
-
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/nbdist/
-/.nb-gradle/
-build/
-
-### VS Code ###
-.vscode/
+.vscode
