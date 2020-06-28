@@ -6,6 +6,7 @@
 package com.musaugurlu.luckylibrary.backend.services;
 
 import com.musaugurlu.luckylibrary.backend.models.Book;
+import com.musaugurlu.luckylibrary.backend.models.Category;
 import com.musaugurlu.luckylibrary.backend.repositories.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,8 +52,22 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Optional<List<Book>> getPopularBooks() { return bookRepository.findTop6ByOrderByPublishedDateDesc(); }
+    public Optional<List<Book>> getPopularBooks() { return bookRepository.findTop10ByOrderByViewDesc(); }
 
+    @Override
+    public long count() {
+        return bookRepository.count();
+    }
+
+    @Override
+    public List<Book> search(String word) {
+        return bookRepository.findByTitleContainingIgnoreCase(word);
+    }
+
+    @Override
+    public List<Book> findAllByCategory(Category category) {
+        return bookRepository.findAllByCategory(category);
+    }
 }
 
 

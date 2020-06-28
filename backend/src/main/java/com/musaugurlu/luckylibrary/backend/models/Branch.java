@@ -10,9 +10,7 @@ package com.musaugurlu.luckylibrary.backend.models;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
@@ -24,6 +22,9 @@ public class Branch {
     String address;
     String imgUrl;
     String phone;
+
+    @Lob
+    @Column(length = 1024)
     String description;
 
     @CreationTimestamp

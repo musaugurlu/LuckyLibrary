@@ -12,6 +12,7 @@ import java.util.Optional;
 
 public interface BranchService {
     Optional<Branch> findById(Long id);
-
+    Optional<Branch> findFirstBy();
     List<Branch> findAll();
+    Branch save(Branch branch);
 }

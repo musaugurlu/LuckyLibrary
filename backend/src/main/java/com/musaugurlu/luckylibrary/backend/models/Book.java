@@ -36,9 +36,13 @@ public class Book {
     int pageCount;
     BigDecimal price;
     String shelf;
+    int view;
 
     @Temporal(TemporalType.DATE)
     Date publishedDate;
+
+    @ManyToOne
+    Category category;
 
     @ManyToOne
     Branch branch;
@@ -136,6 +140,14 @@ public class Book {
         this.shelf = shelf;
     }
 
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public Branch getBranch() {
         return branch;
     }
@@ -158,6 +170,14 @@ public class Book {
 
     public void setUpdatedDate(Timestamp updatedDate) {
         this.updatedDate = updatedDate;
+    }
+
+    public int getView() {
+        return view;
+    }
+
+    public void setView(int view) {
+        this.view = view;
     }
 }
 

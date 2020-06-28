@@ -25,7 +25,17 @@ public class BranchServiceImpl implements BranchService {
     }
 
     @Override
+    public Optional<Branch> findFirstBy() {
+        return branchRepository.findFirstBy();
+    }
+
+    @Override
     public List<Branch> findAll() {
         return branchRepository.findAll();
+    }
+
+    @Override
+    public Branch save(Branch branch) {
+        return branchRepository.save(branch);
     }
 }

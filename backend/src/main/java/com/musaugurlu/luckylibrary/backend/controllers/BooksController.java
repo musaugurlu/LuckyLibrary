@@ -6,65 +6,54 @@
 
 package com.musaugurlu.luckylibrary.backend.controllers;
 import com.musaugurlu.luckylibrary.backend.models.Book;
+import com.musaugurlu.luckylibrary.backend.models.Category;
 import com.musaugurlu.luckylibrary.backend.services.BookService;
+import com.musaugurlu.luckylibrary.backend.services.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080")
-@RequestMapping("/books")
+@CrossOrigin(origins = "http://localhost:8080/")
 public class BooksController {
 
     @Autowired
     BookService bookService;
 
-//    @GetMapping
-//    public String books(Model model) {
-//        return "books/index";
-//    }
-//
-//    @GetMapping("/{id}")
-//    public Optional<Book> book(@PathVariable UUID id) {
-//        return bookService.findById(id);
-//    }
-//
-//    @PostMapping("/{id}/hold")
-//    public void holdBook(@PathVariable UUID id) {
-//        //TODO:Implement this
-//    }
-//
-//    @PostMapping("/{id}/checkin")
-//    public void checkInBook(@PathVariable UUID id) {
-//        //TODO:Implement this
-//    }
-//
-//    @PostMapping("/{id}/checkout")
-//    public void checkOutBook(@PathVariable UUID id) {
-//        //TODO:Implement this
-//    }
-//
-////    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-////    public void handleTypeMismatch(MethodArgumentTypeMismatchException ex) {
-////
-////        String message = String.format("'%s' should be a valid '%s' and '%s' isn't",
-////                ex.getName(), ex.getRequiredType().getSimpleName(), ex.getValue());
-////
-////        System.out.println(message);
-////        //TODO: Handle this exception better
-////    }
+    @Autowired
+    CategoryService categoryService;
 
-    @GetMapping("/newbooks")
+    @GetMapping("/books/newbooks")
     public Optional<List<Book>> popularBooks() {
+        return bookService.getNewBooks();
+    }
+
+    @GetMapping("/books/popularbooks")
+    public Optional<List<Book>> newBooks() {
         return bookService.getPopularBooks();
     }
 
-    @GetMapping("/popularbooks")
-    public Optional<List<Book>> newBooks() {
-        return bookService.getNewBooks();
+    @GetMapping("/books/numOfBooks")
+    public long numOfBooks() {
+        return bookService.count();
+    }
+
+    @GetMapping("/books/search/{query}")
+    public List<Book> search(@PathVariable String query) {
+        return bookService.search(query);
+    }
+
+    @GetMapping("/books/byCategory/{category}")
+    public List<Book> getBooksByCategory(@PathVariable String category) {
+        Optional<Category> cat = categoryService.findByName(category);
+        if(cat.isPresent()) {
+            return bookService.findAllByCategory(cat.get());
+        }
+        return null;
     }
 
 }

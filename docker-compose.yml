@@ -16,7 +16,8 @@ services:
       SPRING_DATASOURCE_URL: 'jdbc:mysql://luckylibrary-db:3306/luckylibrary?characterEncoding=utf8&useSSL=false&allowPublicKeyRetrieval=true'
       SPRING_DATASOURCE_USERNAME: ${MYSQL_DBUSER}
       SPRING_DATASOURCE_PASSWORD: ${MYSQL_DBPASS}
-
+      MYSQL_ROOT_HOST: '%'
+      
   luckylibrary-frontend:
     build:
       context: ./frontend/
