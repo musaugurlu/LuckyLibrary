@@ -4,9 +4,9 @@
             <div class="blog__item__pic" :style="getBGStyle()"></div>
             <div class="blog__item__text">
                 <ul class="blog__item__tags">
-                    <li><i class="fa fa-tags"></i> {{$route.params.category}}</li>
+                    <li><i class="fa fa-tags"></i> {{category}}</li>
                 </ul>
-                <h5><a href="#"> {{title}}</a></h5>
+                <h5><a :href="'/book/' + id"> {{title}}</a></h5>
                 <ul class="blog__item__widget">
                     <li><i class="fa fa-clock-o"></i> {{publishedDate}}</li>
                     <li><i class="fa fa-user"></i> {{author}}</li>
@@ -26,6 +26,7 @@ export default class Book extends Vue {
     @Prop() private title!: string;
     @Prop() private author!: string;
     @Prop() private publishedDate!: string;
+    @Prop() private category!: string;
 
     getBGStyle() {
         return "background-image: url('" + this.img + "');background-repeat: no-repeat;background-position: center;";

@@ -19,8 +19,8 @@ import java.util.UUID;
 public interface BookRepository extends JpaRepository<Book, UUID> {
     Optional<Book> findFirstBy();
     List<Book> findBooksByTitleOrderByTitle(String title);
-    Optional<List<Book>> findTop6ByOrderByPublishedDateDesc();
-    Optional<List<Book>> findTop10ByOrderByViewDesc();
+    Optional<List<Book>> findTop8ByOrderByPublishedDateDesc();
+    Optional<List<Book>> findTop8ByOrderByViewDesc();
     List<Book> findByTitleContainingIgnoreCase(String word);
     long count();
     List<Book> findAllByCategory(Category category);

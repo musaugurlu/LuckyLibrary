@@ -3,6 +3,14 @@ import axios from 'axios'
 export default class Helper {
     private backend_url = "http://localhost:8090"
 
+    public getSingleBook(id: string) {
+        return axios.get(this.backend_url + "/book/" + id);
+    }
+
+    public getAllBooks() {
+        return axios.get(this.backend_url + "/books");
+    }
+
     public getCategories() {
         return axios.get(this.backend_url + "/categories");
     }
@@ -17,5 +25,17 @@ export default class Helper {
 
     public getBooksByCategory(category: string) {
         return axios.get(this.backend_url + "/books/byCategory/" + category);
+    }
+
+    public getNewBooks() {
+        return axios.get(this.backend_url + "/books/newbooks");
+    }
+
+    public getPopularBooks() {
+        return axios.get(this.backend_url + "/books/popularbooks");
+    }
+
+    public findBooks(query: string) {
+        return axios.get(this.backend_url + "/books/search?query=" + query);
     }
 }

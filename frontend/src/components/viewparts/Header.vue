@@ -12,24 +12,14 @@
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <li class="active"><a href="./index.html">Home</a></li>
-                                <li><a href="./listing.html">Books</a></li>
-                                <!-- <li><a href="#">Categories</a></li> -->
-                                <li><a href="#">Branches</a>
-                                    <ul class="dropdown">
-                                        <li><a href="./about.html">About</a></li>
-                                        <li><a href="./listing-details.html">Listing Details</a></li>
-                                        <li><a href="./blog-details.html">Blog Details</a></li>
-                                        <li><a href="./contact.html">Contact</a></li>
-                                    </ul>
-                                </li>
-                                <!-- <li><a href="./blog.html">Blog</a></li>
-                                <li><a href="#">Shop</a></li> -->
+                                <router-link tag="li" to="/"><a>Home</a></router-link>
+                                <router-link tag="li" to="/books" :class="isActive('/book') ? 'active' : ''"><a>Books</a></router-link>
+                                <router-link tag="li" to="/categories" :class="isActive('/categor') ? 'active' : ''"><a>Categories</a></router-link>
+                                <router-link tag="li" to="/branches" :class="isActive('/branch') ? 'active' : ''"><a>Branches</a></router-link>
                             </ul>
                         </nav>
                         <div class="header__menu__right">
                             <a href="#" class="primary-btn"><i class="fa fa-user"></i> Login</a>
-                            <!-- <a href="#" class="login-btn"><i class="fa fa-user"></i></a> -->
                         </div>
                     </div>
                 </div>
@@ -45,6 +35,15 @@ import {Component, Vue} from 'vue-property-decorator'
 
 @Component
 export default class Header extends Vue {
-  
+    mounted() {
+        if(this.$route.name !== "Home" && this.$route.name !== "Book" ) {
+            const elem: HTMLElement = document.getElementsByClassName("header")[0] as HTMLElement;
+            elem.setAttribute("style", "background-image: url('/img/hero/library-bg.jpg');");
+        }
+    }
+
+    isActive(path: string): boolean {
+        return this.$route.path.indexOf(path) === 0;
+    }
 }
 </script>

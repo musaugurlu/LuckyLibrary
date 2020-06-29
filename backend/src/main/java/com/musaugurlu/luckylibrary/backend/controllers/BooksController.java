@@ -15,10 +15,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:8080/")
+//@CrossOrigin(origins = "http://localhost:8080/**")
 public class BooksController {
 
     @Autowired
@@ -26,6 +27,16 @@ public class BooksController {
 
     @Autowired
     CategoryService categoryService;
+
+    @GetMapping("/books")
+    public List<Book> getAllBooks() {
+        return bookService.findAll();
+    }
+
+    @GetMapping("/book/{id}")
+    public Optional<Book> getSingleBook(@PathVariable UUID id) {
+        return bookService.findById(id);
+    }
 
     @GetMapping("/books/newbooks")
     public Optional<List<Book>> popularBooks() {
@@ -42,8 +53,8 @@ public class BooksController {
         return bookService.count();
     }
 
-    @GetMapping("/books/search/{query}")
-    public List<Book> search(@PathVariable String query) {
+    @GetMapping(value = "/books/search", params = "query")
+    public List<Book> search(@RequestParam("query") String query) {
         return bookService.search(query);
     }
 

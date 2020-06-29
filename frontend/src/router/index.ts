@@ -3,6 +3,9 @@ import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
 import Categories from '../views/categories/Index.vue'
 import Category from '../views/categories/Category.vue'
+import Book from '../views/books/Book.vue'
+import Books from '../views/books/Index.vue'
+import Search from '../views/books/Search.vue'
 
 Vue.use(VueRouter)
 
@@ -21,6 +24,21 @@ Vue.use(VueRouter)
     path: '/categories',
     name: 'Categories',
     component: Categories
+  },
+  {
+    path: '/book/:book',
+    name: 'Book',
+    component: Book
+  },
+  {
+    path: '/books',
+    name: 'Books',
+    component: Books
+  },
+  {
+    path: '/books/search',
+    name: 'Search',
+    component: Search
   }
 ]
 
@@ -28,7 +46,7 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes,
-  linkExactActiveClass: 'is-active',
+  linkExactActiveClass: 'active',
 })
 
 export default router

@@ -10,7 +10,8 @@
                             <!-- <p>1.118.940.376 The best book is waiting for you</p> -->
                             <p>{{ numOfBooks }} The best book is waiting for you</p>
                         </div>
-                        <div class="hero__search__form">
+                        <search :categories="categories"/>
+                        <!-- <div class="hero__search__form">
                             <form action="#">
                                 <input type="text" placeholder="Search...">
                                 <button type="submit">Search Now</button>
@@ -23,7 +24,7 @@
                             <li>
                                 <a href="/categories/"><img src="img/hero/cat-6.png" alt=""> All Categories</a>
                             </li>
-                        </ul>
+                        </ul> -->
                     </div>
                 </div>
             </div>
@@ -35,8 +36,13 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Helper from '../../helper'
+import Search from '@/components/viewparts/Search.vue'
 
-@Component
+@Component({
+    components: {
+        Search
+    }
+})
 export default class Hero extends Vue {
     private api: Helper = new Helper(); 
     private categories: Array<object> = []

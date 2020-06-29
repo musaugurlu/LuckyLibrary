@@ -1,24 +1,24 @@
 <template>
     <div>
         <page-header />
-        <page-books />
+        <page-search />
         <page-footer />
     </div>
 </template>
 <script lang="ts">
 import {Component, Vue} from 'vue-property-decorator'
 import PageHeader from '@/components/viewparts/Header.vue'
-import PageBooks from '@/components/books/Books.vue'
+import PageSearch from '@/components/books/Search.vue'
 import PageFooter from '@/components/viewparts/Footer.vue'
 
 @Component({
     components: {
         PageHeader,
-        PageBooks,
+        PageSearch,
         PageFooter
     }
 })
-export default class Books extends Vue {
+export default class Search extends Vue {
      
 }
 </script>

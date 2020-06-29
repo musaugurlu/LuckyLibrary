@@ -48,11 +48,11 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Optional<List<Book>> getNewBooks() {
-        return bookRepository.findTop6ByOrderByPublishedDateDesc();
+        return bookRepository.findTop8ByOrderByPublishedDateDesc();
     }
 
     @Override
-    public Optional<List<Book>> getPopularBooks() { return bookRepository.findTop10ByOrderByViewDesc(); }
+    public Optional<List<Book>> getPopularBooks() { return bookRepository.findTop8ByOrderByViewDesc(); }
 
     @Override
     public long count() {
