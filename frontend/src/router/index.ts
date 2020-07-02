@@ -6,6 +6,8 @@ import Category from '../views/categories/Category.vue'
 import Book from '../views/books/Book.vue'
 import Books from '../views/books/Index.vue'
 import Search from '../views/books/Search.vue'
+import Branch from '../views/branches/Branch.vue'
+import Branches from '../views/branches/Index.vue'
 
 Vue.use(VueRouter)
 
@@ -39,7 +41,17 @@ Vue.use(VueRouter)
     path: '/books/search',
     name: 'Search',
     component: Search
-  }
+  },
+  {
+    path: '/branch/:id',
+    name: 'Branch',
+    component: Branch
+  },
+  {
+    path: '/branches',
+    name: 'Branches',
+    component: Branches
+  },
 ]
 
 const router = new VueRouter({

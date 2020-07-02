@@ -5,8 +5,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <p> </p>
-                        <h2>Categories</h2>
+                        <h2>Branches</h2>
+                        <p></p>
                     </div>
                     <div class="categories__item__list">
                         <a v-for="(category, index) in categories" :key="index" :href="'/category/' + category.name.toLowerCase()">
