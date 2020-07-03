@@ -1,3 +1,8 @@
+<!--
+* Copyright (c) 2020 Musa Ugurlu
+* Author: Musa Ugurlu
+* Date: 07/03/2020 2:32:40 pm
+-->
 <template>
     <!-- Categories Section Begin -->
     <section class="categories spad">

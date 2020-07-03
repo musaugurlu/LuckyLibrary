@@ -1,3 +1,8 @@
+<!--
+* Copyright (c) 2020 Musa Ugurlu
+* Author: Musa Ugurlu
+* Date: 07/03/2020 2:32:53 pm
+-->
 <template>
     <div class="col-lg-3 col-md-3">
         <div class="blog__item">

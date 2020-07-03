@@ -1,3 +1,8 @@
+<!--
+* Copyright (c) 2020 Musa Ugurlu
+* Author: Musa Ugurlu
+* Date: 07/03/2020 2:34:51 pm
+-->
 <template>
     <!-- Hero Section Begin -->
     <section class="hero set-bg">

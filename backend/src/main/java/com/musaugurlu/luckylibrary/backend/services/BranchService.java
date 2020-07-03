@@ -1,6 +1,7 @@
 /*
  * Copyright (c) 2020.
- * Written by Musa Ugurlu - 1/1/20, 11:50 AM
+ * Author: Musa Ugurlu
+ * Date: 7/3/20, 1:55 PM
  */
 
 package com.musaugurlu.luckylibrary.backend.services;

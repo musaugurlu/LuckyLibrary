@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2020 Musa Ugurlu
+ * Author: Musa Ugurlu
+ * Date: 07/03/2020 2:40:29 pm
+ */
 import axios from 'axios'
 
 export default class Helper {
