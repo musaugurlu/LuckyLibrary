@@ -2,10 +2,10 @@
 # LuckyLibrary
 Library Checkout System - Experimental
 
-## Pre-requsite
+## Prerequisite
 - Docker (if you deploy with docker)
 
-## Build
+## Setup
 - Change `${MYSQL_DBNAME}`, `${MYSQL_DBUSER}`, `${MYSQL_DBPASS}`, `${MYSQL_DBPASS}` in `docker-compose.yml` file.
 - Open command prompt, 
 - `cd` to the directory, 
