@@ -1,20 +1,20 @@
 <template>
     <div>
         <page-header />
-        <category />
+        <branches />
         <page-footer />
     </div>
 </template>
 <script>
 import PageHeader from '@/components/viewparts/Header.vue'
-import Category from '@/components/categories/Category.vue'
+import Branches from '@/components/branches/Branches.vue'
 import PageFooter from '@/components/viewparts/Footer.vue'
 
 export default {
     name: 'Home',
     components: {
         PageHeader,
-        Category,
+        Branches,
         PageFooter
     } 
 }

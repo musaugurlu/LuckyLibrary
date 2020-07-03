@@ -11,8 +11,8 @@
                         <h2>Search for: {{$route.query.query}}</h2>
                         <p></p>
                     </div>
-                    <book-list :books="books" />
-
+                    <book-list :books="books" v-if="books.length > 0" />
+                    <p v-else>No books found. Try to search with less words.</p>
                 </div>
             </div>
         </div>

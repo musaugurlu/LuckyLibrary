@@ -11,7 +11,8 @@
                     <div class="categories__item__list">
                         <a v-for="(category, index) in categories" :key="index" :href="'/category/' + category.name.toLowerCase()">
                             <div class="categories__item">
-                                <img :src="'/img/categories/' + category.img" alt="">
+                                <img src="/img/categories/categories.png" alt="">
+                                <!-- <img :src="'/img/categories/' + category.img" alt=""> -->
                                 <h5>{{category.name}}</h5>
                                 <span>{{category.bcount}} Books</span>
                             </div>

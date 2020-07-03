@@ -9,11 +9,11 @@
                         <p></p>
                     </div>
                     <div class="categories__item__list">
-                        <a v-for="(category, index) in categories" :key="index" :href="'/category/' + category.name.toLowerCase()">
+                        <a v-for="(branch, index) in branches" :key="index" :href="'/branch/' + branch.id">
                             <div class="categories__item">
                                 <img :src="'/img/categories/' + category.img" alt="">
-                                <h5>{{category.name}}</h5>
-                                <span>{{category.bcount}} Books</span>
+                                <h5>{{branch.name}}</h5>
+                                <!-- <span>{{category.bcount}} Books</span> -->
                             </div>
                         </a>
                     </div>
@@ -29,16 +29,16 @@ import {Component, Vue} from 'vue-property-decorator'
 import Helper from '../../helper'
 
 @Component
-export default class Category extends Vue { 
+export default class Branches extends Vue { 
     private api: Helper = new Helper();
-    private categories: Array<object> = []
-    private fetchCategories(): void {
-        this.api.getCategories().then(repsonse => {
-            this.categories = repsonse.data;
+    private branches: Array<object> = []
+    private fetchBranches(): void {
+        this.api.getBranches().then(repsonse => {
+            this.branches = repsonse.data;
         })
     }
     mounted() {
-     this.fetchCategories();   
+        this.fetchBranches();   
     }
 }
 

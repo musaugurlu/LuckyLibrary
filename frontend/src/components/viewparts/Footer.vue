@@ -40,11 +40,11 @@
                 <div class="col-lg-3 offset-lg-1 col-md-6">
                     <div class="footer__widget">
                         <ul>
-                            <li><a href="#">Sign In</a></li>
-                            <li><a href="#">How it Work</a></li>
-                            <li><a href="#">Advantages</a></li>
-                            <li><a href="#">Direo App</a></li>
-                            <li><a href="#">Packages</a></li>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/books">Books</a></li>
+                            <li><a href="/categories">Categories</a></li>
+                            <li><a href="/branches">Branches</a></li>
+                            <li><a href="/my">Log in</a></li>
                         </ul>
                     </div>
                 </div>

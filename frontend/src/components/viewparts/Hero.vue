@@ -11,20 +11,6 @@
                             <p>{{ numOfBooks }} The best book is waiting for you</p>
                         </div>
                         <search :categories="categories"/>
-                        <!-- <div class="hero__search__form">
-                            <form action="#">
-                                <input type="text" placeholder="Search...">
-                                <button type="submit">Search Now</button>
-                            </form>
-                        </div>
-                        <ul class="hero__categories__tags">
-                            <li v-for="(category, index) in categories.slice(0,5)" :key="index">
-                                <a :href="'/category/' + category.name.toLowerCase()"><img :src="'img/hero/' + category.img" alt=""> {{category.name}}</a>
-                            </li>
-                            <li>
-                                <a href="/categories/"><img src="img/hero/cat-6.png" alt=""> All Categories</a>
-                            </li>
-                        </ul> -->
                     </div>
                 </div>
             </div>

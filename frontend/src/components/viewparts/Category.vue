@@ -10,7 +10,8 @@
                     </div>
                     <div class="categories__item__list">
                         <div class="categories__item" v-for="(category, index) in categories.slice(0,5)" :key="index">
-                            <img :src="'/img/categories/' + category.img" alt="">
+                            <!-- <img :src="'/img/categories/' + category.img" alt=""> -->
+                            <img src="/img/categories/category-large.png" alt="">
                             <h5>{{category.name}}</h5>
                             <span>{{category.bcount}} Books</span>
                         </div>

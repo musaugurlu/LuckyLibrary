@@ -2,14 +2,14 @@
     <div>
         <page-header />
         <page-hero />
-        <page-category />
+        <!-- <page-category /> -->
         <page-footer />
     </div>
 </template>
 <script>
 import PageHeader from '@/components/viewparts/Header.vue'
 import PageHero from '@/components/viewparts/Hero.vue'
-import PageCategory from '@/components/viewparts/Category.vue'
+// import PageCategory from '@/components/viewparts/Category.vue'
 import PageFooter from '@/components/viewparts/Footer.vue'
 
 export default {
@@ -17,7 +17,7 @@ export default {
     components: {
         PageHeader,
         PageHero,
-        PageCategory,
+        // PageCategory,
         PageFooter
     } 
 }

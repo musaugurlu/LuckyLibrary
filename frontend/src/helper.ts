@@ -38,4 +38,12 @@ export default class Helper {
     public findBooks(query: string) {
         return axios.get(this.backend_url + "/books/search?query=" + query);
     }
+
+    public getBranches() {
+        return axios.get(this.backend_url + "/branches");
+    }
+
+    public getBranch(id: number) {
+        return axios.get(this.backend_url + "/branch/" + id);
+    }
 }
