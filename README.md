@@ -11,4 +11,5 @@ Library Checkout System - Experimental
 - `cd` to the directory, 
 - and run `docker-compese`
 - after it finishes running, browse `http://localhost:8080`
-Docker will create 3 containers, one for DB, one for backend, and one for frontend. The backend port is 8090 but you will not need it. Front end port is server at port 8080.
+
+Docker will create 3 containers, one for DB, one for backend, and one for frontend. The backend port is 8090 but you will not need it. Front end is served at port 8080.
