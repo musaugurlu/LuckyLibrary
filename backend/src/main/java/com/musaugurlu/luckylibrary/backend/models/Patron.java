@@ -7,11 +7,13 @@
 package com.musaugurlu.luckylibrary.backend.models;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -19,11 +21,15 @@ public class Patron {
 
     @Id
     @GeneratedValue
-    UUID id;
+    Long id;
     String firstName;
     String lastName;
     String email;
     String password;
+    boolean IsLocked;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    List<Role> roles;
 
     @Temporal(TemporalType.DATE)
     Date dateOfBirth;
@@ -43,7 +49,7 @@ public class Patron {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
@@ -61,6 +67,14 @@ public class Patron {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 
     public Date getDateOfBirth() {
@@ -85,6 +99,14 @@ public class Patron {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isLocked() {
+        return IsLocked;
+    }
+
+    public void setLocked(boolean locked) {
+        IsLocked = locked;
     }
 
     public Timestamp getCreated_at() {

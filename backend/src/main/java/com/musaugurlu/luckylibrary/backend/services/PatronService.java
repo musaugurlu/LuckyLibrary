@@ -13,9 +13,9 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface PatronService {
-    Optional<Patron> findById(UUID id);
-
+    Optional<Patron> findById(Long id);
+    Optional<Patron> findByEmail(String email);
+    Optional<Patron> findFirstBy();
     List<Patron> findAll();
-
     Patron save(Patron patron);
 }

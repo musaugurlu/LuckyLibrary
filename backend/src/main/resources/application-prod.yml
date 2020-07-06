@@ -9,3 +9,6 @@ spring:
     url: <<PROD DB JDBC URL>>
     username: <<PROD DB USERNAME>>
     password: <<PROD DB PASS>>
+jwt:
+  secret: 'Ch@ngeTh!5ToS3cur3Str!ng'
+  expirationMs: 3600000

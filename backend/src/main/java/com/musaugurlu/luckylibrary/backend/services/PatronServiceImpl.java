@@ -22,8 +22,18 @@ public class PatronServiceImpl implements PatronService {
     PatronRepository patronRepository;
 
     @Override
-    public Optional<Patron> findById(UUID id) {
+    public Optional<Patron> findById(Long id) {
         return patronRepository.findById(id);
+    }
+
+    @Override
+    public Optional<Patron> findByEmail(String email) {
+        return patronRepository.findByEmail(email);
+    }
+
+    @Override
+    public Optional<Patron> findFirstBy() {
+        return patronRepository.findFirstBy();
     }
 
     @Override

@@ -8,18 +8,16 @@ package com.musaugurlu.luckylibrary.backend.configurations;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.musaugurlu.luckylibrary.backend.models.Book;
-import com.musaugurlu.luckylibrary.backend.models.Branch;
-import com.musaugurlu.luckylibrary.backend.models.Category;
-import com.musaugurlu.luckylibrary.backend.services.BookService;
-import com.musaugurlu.luckylibrary.backend.services.BranchService;
-import com.musaugurlu.luckylibrary.backend.services.CategoryService;
+import com.musaugurlu.luckylibrary.backend.models.*;
+import com.musaugurlu.luckylibrary.backend.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.DateFormat;
 import java.util.*;
 
 @Component
@@ -34,12 +32,21 @@ public class DbSeeder implements CommandLineRunner {
     @Autowired
     BranchService branchService;
 
+    @Autowired
+    RoleService roleService;
+
+    @Autowired
+    PatronService patronService;
+
     @Override
     public void run(String... args) throws Exception {
         seedBranches();
         seedCategories();
         seedBooks();
+        seedRoles();
+        seedPatrons();
     }
+
     private void seedBranches() {
         List<Branch> branches = branchService.findAll();
         if(branches.isEmpty()) {
@@ -99,6 +106,29 @@ public class DbSeeder implements CommandLineRunner {
             } catch (IOException e){
                 System.out.println("Unable to save users: " + e.getMessage());
             }
+        }
+    }
+
+    private void seedRoles() {
+        Optional<Role> role = roleService.findFirstBy();
+        if(role.isEmpty()) {
+            roleService.save(new Role(EnumRole.ROLE_ADMIN));
+            roleService.save(new Role(EnumRole.ROLE_USER));
+        }
+    }
+
+    private void seedPatrons() {
+        List<Role> roles = roleService.findAll();
+        Optional<Patron> patron = patronService.findFirstBy();
+        if(patron.isEmpty()) {
+            Patron nPatron = new Patron();
+            nPatron.setFirstName("Musa");
+            nPatron.setLastName("Ugurlu");
+            nPatron.setRoles(roles);
+            nPatron.setDateOfBirth(new Date("1/1/2000"));
+            nPatron.setEmail("mu@sa.com");
+            nPatron.setPassword(BCrypt.hashpw("Test1234", BCrypt.gensalt()));
+            patronService.save(nPatron);
         }
     }
 }
