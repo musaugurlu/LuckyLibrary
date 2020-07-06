@@ -44,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         //TODO: Implement Restriction on User and Management pages
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/auth/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/auth/login").permitAll()
                 .antMatchers(HttpMethod.GET, "/books/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/book/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/categories/**").permitAll()

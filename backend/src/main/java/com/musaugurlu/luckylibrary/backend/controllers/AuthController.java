@@ -27,11 +27,6 @@ public class AuthController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @RequestMapping("/hello")
-    public String Hello() {
-        return "Hello";
-    }
-
     @PostMapping("/auth/login")
     public ResponseEntity<?> createAuthToken(@RequestBody AuthRequest request) throws Exception {
         try {
