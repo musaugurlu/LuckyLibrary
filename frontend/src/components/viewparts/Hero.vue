@@ -1,7 +1,7 @@
 <!--
 * Copyright (c) 2020 Musa Ugurlu
 * Author: Musa Ugurlu
-* Date: 07/03/2020 2:34:51 pm
+* Date: 09/20/2020 1:20:53 am
 -->
 <template>
     <!-- Hero Section Begin -->
@@ -24,38 +24,36 @@
     <!-- Hero Section End -->
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import Helper from '../../helper'
+<script>
 import Search from '@/components/viewparts/Search.vue'
+// import { mapActions } from 'vuex'
 
-@Component({
+export default {
     components: {
         Search
-    }
-})
-export default class Hero extends Vue {
-    private api: Helper = new Helper(); 
-    private categories: Array<object> = []
-    private numOfBooks = 0;
-    private fetchCategories(): void {
-        this.api.getCategories().then(repsonse => {
-            this.categories = repsonse.data;
-        })
-    }
-    private getNumOfBooks(): void {
-        this.api.getNumOfBooks().then(
-            response => {
-                this.numOfBooks = response.data;
-            }
-        );
-    }
+    },
+
+    methods: {
+        
+    },
+
     mounted() {
-     this.fetchCategories();
-     this.getNumOfBooks();
-    }
+        this.$store.dispatch('books/getNumOfBooks');
+        this.$store.dispatch('books/getCategories');
+    },
+
+    computed: {
+        categories() {
+            return this.$store.state.books.categories;
+        },
+
+        numOfBooks() {
+            return this.$store.state.books.numOfBooks;
+        }
+    },
 }
 </script>
+
 <style scoped>
     .set-bg {
         background-image: url('../../assets/img/hero/library-bg.jpg');

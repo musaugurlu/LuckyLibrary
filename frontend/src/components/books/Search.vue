@@ -1,7 +1,7 @@
 <!--
 * Copyright (c) 2020 Musa Ugurlu
 * Author: Musa Ugurlu
-* Date: 07/03/2020 2:32:40 pm
+* Date: 09/20/2020 2:55:47 am
 -->
 <template>
     <!-- Categories Section Begin -->
@@ -25,30 +25,35 @@
     <!-- Categories Section End -->
 </template>
 
-<script lang="ts">
-import {Component, Vue} from 'vue-property-decorator'
+<script>
 import Helper from '../../helper'
 import BookList from './BookList.vue'
 import PageSearch from '@/components/viewparts/Search.vue'
 
-@Component({
+const api = new Helper();
+
+export default {
     components: {
         BookList,
         PageSearch
-    }
-})
-export default class Search extends Vue { 
-    private api: Helper = new Helper();
-    private books: Array<object> = []
+    },
 
-    private fetchBooks(): void {
-        this.api.findBooks(this.$route.query.query as string).then(repsonse => {
-            this.books = repsonse.data;
-        });
-    }
+    data() {
+        return {
+            books: []
+        }
+    },
+
+    methods: {
+        fetchBooks() {
+            api.findBooks(this.$route.query.query).then(repsonse => {
+                this.books = repsonse.data;
+            });
+        }
+    },
+
     mounted() {
-     this.fetchBooks();   
-    }
+        this.fetchBooks();
+    },
 }
-
 </script>

@@ -51,7 +51,7 @@ public class JWTUtil {
     }
 
     private String createToken(Map<String, Object> claims, String subject) {
-        Long issuedAt = System.currentTimeMillis();
+        long issuedAt = System.currentTimeMillis();
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(subject)

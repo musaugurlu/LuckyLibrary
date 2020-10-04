@@ -7,13 +7,11 @@
 package com.musaugurlu.luckylibrary.backend.models;
 
 public class AuthResponse {
-    private final String JWT;
+    private final String TOKEN;
 
-    public AuthResponse(String JWT) {
-        this.JWT = JWT;
-    }
+    public AuthResponse(String TOKEN) { this.TOKEN = TOKEN; }
 
-    public String getJWT() {
-        return JWT;
+    public String getTOKEN() {
+        return TOKEN;
     }
 }

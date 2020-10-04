@@ -1,7 +1,7 @@
 <!--
 * Copyright (c) 2020 Musa Ugurlu
 * Author: Musa Ugurlu
-* Date: 07/03/2020 2:33:38 pm
+* Date: 09/20/2020 3:12:06 am
 -->
 <template>
     <div class="breadcrumb-area set-bg">
@@ -21,14 +21,12 @@
     </div>
 </template>
 
-<script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator'
-
-@Component
-export default class Breadcrumb extends Vue {
-    @Prop() public category!: string;
+<script>
+export default {
+    props: [ 'category' ]
 }
 </script>
+
 <style scoped>
     .set-bg {
         background-image: url('../../assets/img/hero/library-bg.jpg');

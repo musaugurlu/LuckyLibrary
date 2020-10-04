@@ -1,7 +1,7 @@
 <!--
 * Copyright (c) 2020 Musa Ugurlu
 * Author: Musa Ugurlu
-* Date: 07/03/2020 2:37:30 pm
+* Date: 09/20/2020 3:22:23 am
 -->
 <template>
     <div>
@@ -11,38 +11,42 @@
         <page-footer />
     </div>
 </template>
-<script lang="ts">
-import {Component, Vue} from 'vue-property-decorator'
+
+<script>
 import PageHeader from '@/components/viewparts/Header.vue'
 import Breadcrumb from '@/components/categories/Breadcrumb.vue'
 import BookList from '@/components/books/BookList.vue'
 import PageFooter from '@/components/viewparts/Footer.vue'
-
 import Helper from '../../helper'
 
-@Component({
+const helper = new Helper();
+
+export default {
     components: {
         PageHeader,
         Breadcrumb,
         BookList,
         PageFooter
-    }
-})
-export default class Category extends Vue {
-    private books: Array<object> = [];
-    private api: Helper = new Helper();
+    },
+
+    data() {
+        return {
+            books: []
+        }
+    },
+
+    methods: {
+        fetchBooks() {
+            helper.getBooksByCategory(this.$route.params.category).then(
+                response => {
+                    this.books = response.data;
+                }
+            );
+        }
+    },
 
     mounted() {
-        this.fetchBooks();   
-    }
-
-    fetchBooks(): void {
-        const api = new Helper();
-        api.getBooksByCategory(this.$route.params.category).then(
-            response => {
-                this.books = response.data;
-            }
-        );
-    }
+        this.fetchBooks();
+    },
 }
 </script>

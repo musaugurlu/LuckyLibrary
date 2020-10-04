@@ -1,7 +1,7 @@
 <!--
 * Copyright (c) 2020 Musa Ugurlu
 * Author: Musa Ugurlu
-* Date: 07/03/2020 2:33:10 pm
+* Date: 09/20/2020 3:05:31 am
 -->
 <template>
     <!-- Categories Section Begin -->
@@ -29,22 +29,28 @@
     <!-- Categories Section End -->
 </template>
 
-<script lang="ts">
-import {Component, Vue} from 'vue-property-decorator'
+<script>
 import Helper from '../../helper'
 
-@Component
-export default class Branches extends Vue { 
-    private api: Helper = new Helper();
-    private branches: Array<object> = []
-    private fetchBranches(): void {
-        this.api.getBranches().then(repsonse => {
-            this.branches = repsonse.data;
-        })
-    }
-    mounted() {
-        this.fetchBranches();   
-    }
-}
+const api = new Helper();
 
+export default {
+    data() {
+        return {
+            branches: []
+        }
+    },
+
+    methods: {
+        fetchBranches() {
+            api.getBranches().then(repsonse => {
+                this.branches = repsonse.data;
+            })
+        }
+    },
+
+    mounted() {
+        this.fetchBranches(); 
+    },
+}
 </script>

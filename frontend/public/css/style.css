@@ -1905,6 +1905,32 @@ ol {
     margin-right: 3px;
 }
 
+.login_form form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+}
+
+.login_form form input {
+    width: 100%;
+    height: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 1px solid #e1e1e1;
+    font-size: 15px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+    color: #333333;
+}
+
+.login_form form button {
+    text-transform: none;
+    font-size: 15px;
+    border-radius: 2px;
+    padding: 13px 38px 12px;
+}
+
 .listing__details__review {
     border-top: 1px solid #e1e1e1;
     padding-top: 12px;

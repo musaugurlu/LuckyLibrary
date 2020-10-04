@@ -1,7 +1,7 @@
 <!--
 * Copyright (c) 2020 Musa Ugurlu
 * Author: Musa Ugurlu
-* Date: 07/03/2020 2:32:04 pm
+* Date: 09/20/2020 2:36:44 am
 -->
 <template>
     <section class="blog-section spad">
@@ -32,71 +32,79 @@
         </div>
     </section>
 </template>
-<script lang="ts">
-import {Component, Vue, Prop, Watch} from 'vue-property-decorator'
+
+<script>
 import SingleBook from './SingleBook.vue'
 
-@Component({
+export default {
     components: {
         SingleBook
-    }
-})
-export default class BookList extends Vue {
-    @Prop() private books!: Array<object>;
+    },
     
-    private pages: Array<number>     = [];
-    private page                     = 1;
-    private perPage                  = 12;
-
-    goPrev() {
-        if(this.page > 1) {
-            this.page--;
+    props: [ 'books' ],
+    
+    data() {
+        return {
+            pages : [],
+            page: 1,
+            perPage: 12
         }
-    }
+    },
+    
+    methods: {
+        goPrev() {
+            if(this.page > 1) {
+                this.page--;
+            }
+        },
 
-    goNext() {
-        if(this.page < this.pages.length) {
-            this.page++;
+        goNext() {
+            if(this.page < this.pages.length) {
+                this.page++;
+            }
+        },
+
+        setPage(page) {
+            this.page = page;
+        },
+
+        setPages() {
+            const numOfPages = Math.ceil(this.pageBooks.length / this.perPage);
+            for (let index = 0; index < numOfPages; index++) {
+                this.pages.push(index + 1); 
+            }
+        },
+
+        // Credit: https://medium.com/@obapelumi/pagination-with-vuejs-1f505ce8d15b
+        paginate (pBooks) {
+            const page = this.page;
+            const perPage = this.perPage;
+            const from = (page * perPage) - perPage;
+            const to = (page * perPage);
+            return pBooks && pBooks.length > 0 ? pBooks.slice(from, to) : pBooks;
         }
-    }
+    },
 
-    setPage(page: number): void {
-        this.page = page;
-    }
-
-    setPages() {
-        const numOfPages = Math.ceil(this.pageBooks.length / this.perPage);
-        for (let index = 0; index < numOfPages; index++) {
-            this.pages.push(index + 1); 
+    watch: {
+        books() {
+            this.setPages();
         }
-    }
+    },
 
-    // Credit: https://medium.com/@obapelumi/pagination-with-vuejs-1f505ce8d15b
-    paginate (pBooks: Array<object>) {
-        const page = this.page;
-        const perPage = this.perPage;
-        const from = (page * perPage) - perPage;
-        const to = (page * perPage);
-        return  pBooks.slice(from, to);
-    }
+    computed: {
+        pageBooks() {
+            return this.books;
+        },
 
-    @Watch('books')
-    booksChanged() {
-        this.setPages();
-    }
+        displayedBooks() {
+            return this.paginate(this.pageBooks);
+        },
 
-    get pageBooks(): Array<object> {
-        return this.books;
-    }
-
-    get displayedBooks(): Array<object> {
-        return this.paginate(this.pageBooks);
-    }
-
-    get pageNums(): Array<number> {
-        const start = this.page > 3 ? this.page - 3 : 0;
-        const end = this.page < this.pages.length - 2 ? this.page + 2 : this.pages.length;      
-        return this.pages.slice(start, end);
+        pageNums() {
+            const start = this.page > 3 ? this.page - 3 : 0;
+            const end = this.page < this.pages.length - 2 ? this.page + 2 : this.pages.length;      
+            return this.pages.slice(start, end);
+        }
     }
 }
 </script>

@@ -1,7 +1,7 @@
 <!--
 * Copyright (c) 2020 Musa Ugurlu
 * Author: Musa Ugurlu
-* Date: 07/03/2020 2:32:17 pm
+* Date: 09/20/2020 2:46:01 am
 -->
 <template>
     <!-- Categories Section Begin -->
@@ -31,35 +31,30 @@
     <!-- Categories Section End -->
 </template>
 
-<script lang="ts">
-import {Component, Vue} from 'vue-property-decorator'
-import Helper from '../../helper'
+<script>
 import BookList from './BookList.vue'
 import Search from '@/components/viewparts/Search.vue'
+// import { bookService } from '../../services/bookService'
 
-@Component({
+export default {
     components: {
         BookList,
         Search
-    }
-})
-export default class Books extends Vue { 
-    private api: Helper = new Helper();
-    private newBooks: Array<object> = []
-    private popularBooks: Array<object> = []
-
-    private fetchBooks(): void {
-        this.api.getNewBooks().then(repsonse => {
-            this.newBooks = repsonse.data;
-        });
-
-        this.api.getPopularBooks().then(repsonse => {
-            this.popularBooks = repsonse.data;
-        })
-    }
+    },
+    
     mounted() {
-     this.fetchBooks();   
-    }
-}
+        this.$store.dispatch('books/getNewBooks');
+        this.$store.dispatch('books/getPopularBooks');
+    },
 
+    computed: {
+        popularBooks() {
+            return this.$store.state.books.popularBooks;
+        },
+
+        newBooks() {
+            return this.$store.state.books.newBooks;
+        } 
+    },
+}
 </script>

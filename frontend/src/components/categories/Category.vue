@@ -1,7 +1,7 @@
 <!--
 * Copyright (c) 2020 Musa Ugurlu
 * Author: Musa Ugurlu
-* Date: 07/03/2020 2:34:18 pm
+* Date: 09/20/2020 3:09:14 am
 -->
 <template>
     <!-- Categories Section Begin -->
@@ -30,22 +30,17 @@
     <!-- Categories Section End -->
 </template>
 
-<script lang="ts">
-import {Component, Vue} from 'vue-property-decorator'
-import Helper from '../../helper'
+<script>
 
-@Component
-export default class Category extends Vue { 
-    private api: Helper = new Helper();
-    private categories: Array<object> = []
-    private fetchCategories(): void {
-        this.api.getCategories().then(repsonse => {
-            this.categories = repsonse.data;
-        })
-    }
+export default {
     mounted() {
-     this.fetchCategories();   
-    }
-}
+        this.$store.dispatch('books/getCategories');
+    },
 
+    computed: {
+        categories() {
+            return this.$store.state.books.categories;
+        }
+    },
+}
 </script>

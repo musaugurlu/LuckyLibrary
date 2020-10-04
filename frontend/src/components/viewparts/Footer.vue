@@ -1,7 +1,7 @@
 <!--
 * Copyright (c) 2020 Musa Ugurlu
 * Author: Musa Ugurlu
-* Date: 07/03/2020 2:34:42 pm
+* Date: 09/20/2020 1:28:49 am
 -->
 <template>
     <!-- Footer Section Begin -->
@@ -73,13 +73,12 @@
     <!-- Footer Section End -->
 </template>
 
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-
-@Component
-export default class Footer extends Vue {
-  get thisYear() {
-      return (new Date).getFullYear();
-  }
+<script>
+export default {
+    computed: {
+        thisYear() {
+            return (new Date).getFullYear();
+        }
+    },
 }
 </script>

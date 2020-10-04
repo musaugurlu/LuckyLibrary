@@ -1,7 +1,7 @@
 <!--
 * Copyright (c) 2020 Musa Ugurlu
 * Author: Musa Ugurlu
-* Date: 07/03/2020 2:33:16 pm
+* Date: 09/20/2020 3:07:40 am
 -->
 <template>
     <!-- Listing Section Begin -->
@@ -36,13 +36,10 @@
     </section>
     <!-- Listing Section End -->
 </template>
-<script lang="ts">
-import {Component, Vue, Prop} from 'vue-property-decorator'
 
-@Component
-export default class Hero extends Vue{
-    @Prop() private book!: Array<object>;
-    @Prop() private category!: Array<object>;
+<script>
+export default {
+    props: [ 'book', 'category' ]
 }
 </script>
 

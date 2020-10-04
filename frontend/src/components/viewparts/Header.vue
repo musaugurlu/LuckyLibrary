@@ -1,7 +1,7 @@
 <!--
 * Copyright (c) 2020 Musa Ugurlu
 * Author: Musa Ugurlu
-* Date: 07/03/2020 2:34:47 pm
+* Date: 09/20/2020 1:10:36 am
 -->
 <template>
     <!-- Header Section Begin -->
@@ -24,7 +24,8 @@
                             </ul>
                         </nav>
                         <div class="header__menu__right">
-                            <a href="#" class="primary-btn"><i class="fa fa-user"></i> Login</a>
+                            <router-link v-if="loggedIn" to="/auth/logout" class="primary-btn"><i class="fa fa-user"></i> Logout</router-link>
+                            <router-link v-else to="/auth/logout" class="primary-btn"><i class="fa fa-user"></i> Login</router-link>
                         </div>
                     </div>
                 </div>
@@ -35,20 +36,25 @@
     <!-- Header Section End -->
 </template>
 
-<script lang="ts">
-import {Component, Vue} from 'vue-property-decorator'
+<script>
+export default {
+    methods: {
+        isActive(path) {
+            return this.$route.path.indexOf(path) === 0;
+        }
+    },
 
-@Component
-export default class Header extends Vue {
     mounted() {
         if(this.$route.name !== "Home" && this.$route.name !== "Book" ) {
-            const elem: HTMLElement = document.getElementsByClassName("header")[0] as HTMLElement;
+            const elem = document.getElementsByClassName("header")[0];
             elem.setAttribute("style", "background-image: url('/img/hero/library-bg.jpg');");
         }
-    }
+    },
 
-    isActive(path: string): boolean {
-        return this.$route.path.indexOf(path) === 0;
-    }
+    computed: {
+        loggedIn () { 
+            return this.$store.state.auth.status.loggedIn;
+        }
+    },
 }
 </script>

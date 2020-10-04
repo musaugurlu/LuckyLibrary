@@ -1,7 +1,7 @@
 <!--
 * Copyright (c) 2020 Musa Ugurlu
 * Author: Musa Ugurlu
-* Date: 07/03/2020 2:30:43 pm
+* Date: 09/20/2020 2:35:34 am
 -->
 <template>
     <!-- Listing Details Section Begin -->
@@ -45,12 +45,11 @@
     <!-- Listing Details Section End -->
 </template>
 
-<script lang="ts">
-import {Component, Vue, Prop} from 'vue-property-decorator'
-
-@Component
-export default class Book extends Vue {
-    @Prop() private book!: Array<object>;
-    @Prop() private branch!: Array<object>;
+<script>
+export default {
+    props: [
+        'book',
+        'branch'
+    ]
 }
 </script>

@@ -1,7 +1,7 @@
 <!--
 * Copyright (c) 2020 Musa Ugurlu
 * Author: Musa Ugurlu
-* Date: 07/03/2020 2:32:53 pm
+* Date: 09/20/2020 2:43:47 am
 -->
 <template>
     <div class="col-lg-3 col-md-3">
@@ -21,20 +21,21 @@
     </div>
 </template>
 
-<script lang="ts">
-import {Component, Vue, Prop} from 'vue-property-decorator'
+<script>
+export default {
+    props: [
+        'id',
+        'img',
+        'title',
+        'author',
+        'publishedDate',
+        'category'
+    ],
 
-@Component
-export default class Book extends Vue {
-    @Prop() private id!: string;
-    @Prop() private img!: string;
-    @Prop() private title!: string;
-    @Prop() private author!: string;
-    @Prop() private publishedDate!: string;
-    @Prop() private category!: string;
-
-    getBGStyle() {
-        return "background-image: url('" + this.img + "');background-repeat: no-repeat;background-position: center;";
-    }
+    methods: {
+        getBGStyle() {
+            return "background-image: url('" + this.img + "');background-repeat: no-repeat;background-position: center;";
+        }
+    },
 }
 </script>

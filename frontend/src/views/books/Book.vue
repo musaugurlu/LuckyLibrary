@@ -1,7 +1,7 @@
 <!--
 * Copyright (c) 2020 Musa Ugurlu
 * Author: Musa Ugurlu
-* Date: 07/03/2020 2:35:16 pm
+* Date: 09/20/2020 3:15:37 am
 -->
 <template>
     <div>
@@ -12,42 +12,46 @@
     </div>
 </template>
 
-<script lang="ts">
-import {Component, Vue} from 'vue-property-decorator'
+<script>
 import PageHeader from '@/components/viewparts/Header.vue'
 import PageFooter from '@/components/viewparts/Footer.vue'
 import PageHero from '@/components/books/Hero.vue'
 import PageBook from '@/components/books/Book.vue'
 import Helper from '../../helper'
 
-@Component({
+const api = new Helper();
+
+export default {
     components: {
         PageHeader,
         PageHero,
         PageBook,
         PageFooter
-    }
-})
-export default class Book extends Vue {
-    private api: Helper = new Helper();
-    
-    private book: Array<object> = [];
-    private category: Array<object> = [];
-    private branch: Array<object> = [];
+    },
+
+    data() {
+        return {
+            book: [],
+            category: [],
+            branch: []
+        }
+    },
+
+    methods: {
+        fetchBooks() {
+            api.getSingleBook(this.$route.params.book).then(
+                response => {
+                    this.book = response.data;
+                    this.category = response.data.category;
+                    this.branch = response.data.branch;
+                }
+            );
+        }
+    },
 
     mounted() {
-        this.fetchBooks();   
-    }
+        this.fetchBooks();
+    },
 
-    private fetchBooks(): void {
-        const api = new Helper();
-        api.getSingleBook(this.$route.params.book).then(
-            response => {
-                this.book = response.data;
-                this.category = response.data.category;
-                this.branch = response.data.branch;
-            }
-        );
-    }
 }
 </script>

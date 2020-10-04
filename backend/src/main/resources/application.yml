@@ -5,6 +5,6 @@ spring:
   application:
     name: LuckyLibrary
   profiles:
-    active: prod # dev for dev environment (application-dev.yml), and prod for procution
+    active: dev # dev for dev environment (application-dev.yml), and prod for procution
   jpa:
     open-in-view: false

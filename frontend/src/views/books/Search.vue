@@ -1,7 +1,7 @@
 <!--
 * Copyright (c) 2020 Musa Ugurlu
 * Author: Musa Ugurlu
-* Date: 07/03/2020 2:35:40 pm
+* Date: 09/20/2020 3:19:40 am
 -->
 <template>
     <div>
@@ -10,20 +10,17 @@
         <page-footer />
     </div>
 </template>
-<script lang="ts">
-import {Component, Vue} from 'vue-property-decorator'
+
+<script>
 import PageHeader from '@/components/viewparts/Header.vue'
 import PageSearch from '@/components/books/Search.vue'
 import PageFooter from '@/components/viewparts/Footer.vue'
 
-@Component({
+export default {
     components: {
         PageHeader,
         PageSearch,
         PageFooter
     }
-})
-export default class Search extends Vue {
-     
 }
 </script>
