@@ -17,7 +17,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.text.DateFormat;
 import java.util.*;
 
 @Component
@@ -121,11 +120,14 @@ public class DbSeeder implements CommandLineRunner {
         List<Role> roles = roleService.findAll();
         Optional<Patron> patron = patronService.findFirstBy();
         if(patron.isEmpty()) {
+            Calendar cal = Calendar.getInstance();
+            cal.set(2000, 0, 1);
+            
             Patron nPatron = new Patron();
             nPatron.setFirstName("Musa");
             nPatron.setLastName("Ugurlu");
             nPatron.setRoles(roles);
-            nPatron.setDateOfBirth(new Date("1/1/2000"));
+            nPatron.setDateOfBirth(cal.getTime());
             nPatron.setEmail("mu@sa.com");
             nPatron.setPassword(BCrypt.hashpw("Test1234", BCrypt.gensalt()));
             patronService.save(nPatron);

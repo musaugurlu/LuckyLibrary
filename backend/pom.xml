@@ -17,7 +17,7 @@
     <groupId>com.musaugurlu</groupId>
     <artifactId>luckylibrary</artifactId>
     <version>1.0.0</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
     <name>luckylibrary</name>
     <description>Lucky Library</description>
 
