@@ -28,7 +28,7 @@
                 <div class="col-lg-4">
                     <div class="listing__hero__btns">
                         <a href="#" class="primary-btn share-btn"><i class="fa fa-mail-reply"></i> Hold</a>
-                        <a href="#" class="primary-btn"><i class="fa fa-bookmark"></i> Check Out</a>
+                        <a @click="checkOutBook()" href="#" class="primary-btn"><i class="fa fa-bookmark"></i> Check Out</a>
                     </div>
                 </div>
             </div>
@@ -39,7 +39,13 @@
 
 <script>
 export default {
-    props: [ 'book', 'category' ]
+    props: [ 'book', 'category' ],
+
+    methods: {
+        checkOutBook() {
+            this.$store.dispatch('users/getAll');
+        }
+    },
 }
 </script>
 

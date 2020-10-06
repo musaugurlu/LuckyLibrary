@@ -6,7 +6,7 @@
 import axios from 'axios'
 // import authHeader from './services/AuthHeader'
 
-const backend_url = process.env.VUE_APP_API_BASE_URL;
+const backend_url = process.env.VUE_APP_API_BACKEND_URL;
 
 class Helper {
 

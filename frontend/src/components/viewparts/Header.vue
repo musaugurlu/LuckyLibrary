@@ -25,7 +25,7 @@
                         </nav>
                         <div class="header__menu__right">
                             <router-link v-if="loggedIn" to="/auth/logout" class="primary-btn"><i class="fa fa-user"></i> Logout</router-link>
-                            <router-link v-else to="/auth/logout" class="primary-btn"><i class="fa fa-user"></i> Login</router-link>
+                            <router-link v-else to="/auth/login" class="primary-btn"><i class="fa fa-user"></i> Login</router-link>
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@ export default {
 
     computed: {
         loggedIn () { 
-            return this.$store.state.auth.status.loggedIn;
+            return this.$store.getters['auth/isLoggedIn'];
         }
     },
 }

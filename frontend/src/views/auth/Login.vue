@@ -42,7 +42,7 @@ export default {
     },
     computed: {
         loggedIn () {
-            return this.$store.state.auth.status.loggedIn;
+            return this.$store.getters['auth/isLoggedIn'];
         },
 
         alert() {
@@ -57,9 +57,10 @@ export default {
         handleSubmit () {
             this.submitted = true;
             const { email, password } = this;
-            const { dispatch } = this.$store;
             if (email && password) {
-                dispatch('auth/login', { email, password });
+                this.$store.dispatch('auth/login', { email, password })
+                    .then(() => this.$router.push('/'))
+                    .catch(err => {console.log(err)})
             }
         }
     }

@@ -9,12 +9,11 @@
     </div>
 </template>
 <script>
-import router from '../../router'
 
 export default {
     mounted() {
         this.$store.dispatch('auth/logout');
-        router.push("/");
+        this.$router.push("/");
     },
 }
 </script>

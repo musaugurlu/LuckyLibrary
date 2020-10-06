@@ -7,7 +7,7 @@
 import axios from 'axios'
 // import { bookService } from '../../services/userService';
 
-const backendUrl = process.env.VUE_APP_API_BASE_URL;
+const backendUrl = process.env.VUE_APP_API_BACKEND_URL;
 
 export const books = {
     namespaced: true,

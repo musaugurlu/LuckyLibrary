@@ -1,54 +1,69 @@
 /*
  * Copyright (c) 2020 Musa Ugurlu
  * Author: Musa Ugurlu
- * Date: 09/20/2020 2:39:10 pm
+ * Date: 10/05/2020 11:48:29 pm
  */
-import { userService } from '../../services/userService'
-import router from '../../router'
 
-const user = JSON.parse(localStorage.getItem('user'));
-const initialState = user ? { status: { loggedIn: true }, user } : { status: {}, user: null };
+import axios from "axios"
+import { authService } from "../../services/authService";
+
+
 
 export const auth = {
     namespaced: true,
-    state: initialState,
+    state: {
+        status: '',
+        token: localStorage.getItem('token') || '',
+        user: {}
+    },
     actions: {
-        login({ dispatch, commit }, { email, password }) {
-            commit('loginRequest', { email });
-
-            userService.login(email, password)
-                .then(
-                    user => {
-                        commit('loginSuccess', user);
-                        router.push('/');
-                    },
-                    error => {
-                        commit('loginFailure', error);
-                        dispatch('alert/error', error, { root: true });
-                    }
-                );
+        login({ commit }, user) {
+            return new Promise((resolve, reject) => {
+                commit('auth_request')
+                authService.login(user)
+                    .then(response => {
+                        const token = response.data.token;
+                        const user = response.data.user;
+                        localStorage.setItem('token', token);
+                        axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+                        commit('auth_success', token, user);
+                        resolve(response);
+                    }).catch(error => {
+                        commit('auth_error');
+                        localStorage.removeItem('token');
+                        reject(error);
+                    })
+            })
         },
+
         logout({ commit }) {
-            userService.logout();
-            commit('logout');
+            return new Promise((resolve) => {
+                commit('logout')
+                localStorage.removeItem('token')
+                delete axios.defaults.headers.common['Authorization']
+                resolve()
+            })
         }
     },
     mutations: {
-        loginRequest(state, user) {
-            state.status = { loggingIn: true };
-            state.user = user;
+        auth_request(state) {
+            state.status = 'loading'
         },
-        loginSuccess(state, user) {
-            state.status = { loggedIn: true };
-            state.user = user;
+        auth_success(state, token, user) {
+            state.status = 'success'
+            state.token = token
+            state.user = user
         },
-        loginFailure(state) {
-            state.status = {};
-            state.user = null;
+        auth_error(state) {
+            state.status = 'error'
         },
         logout(state) {
-            state.status = {};
-            state.user = null;
-        }
+            state.status = ''
+            state.token = ''
+        },
+    },
+    getters: {
+        isLoggedIn: state => !!state.token,
+        authStatus: state => state.status,
     }
 }
