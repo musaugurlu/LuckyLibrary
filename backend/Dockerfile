@@ -22,7 +22,7 @@ COPY src src
 
 # Package the application
 RUN ./mvnw package -DskipTests
-RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)
+RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.war)
 
 #### Stage 2: A minimal docker image with command to run the app 
 FROM openjdk:11-jre-slim
