@@ -26,24 +26,56 @@ export const books = {
         setNumOfBooks: (state, num) => state.numOfBooks = num,
     },
     actions: {
-        async getCategories({ commit }) {
-            const response = await axios.get(`${backendUrl}/categories`);
-            commit("setCategories", response.data);
+        async getCategories({ dispatch, commit }) {
+            try {
+                const response = await axios.get(`${backendUrl}/categories`);
+                commit("setCategories", response.data);
+            } catch (e) {
+                // TODO: Implement with alert system
+                if (e.response.status === 401) {
+                    console.log("Token Expired. Please log back in and refresh the page.")
+                    dispatch("auth/logout", {}, { root: true });
+                }
+            }
         },
 
-        async getNumOfBooks({ commit }) {
-            const response = await axios.get(`${backendUrl}/books/numOfBooks`);
-            commit("setNumOfBooks", response.data);
+        async getNumOfBooks({ dispatch, commit }) {
+            try {
+                const response = await axios.get(`${backendUrl}/books/numOfBooks`);
+                commit("setNumOfBooks", response.data);
+            } catch (e) {
+                // TODO: Implement with alert system
+                if (e.response.status === 401) {
+                    console.log("Token Expired. Please log back in and refresh the page.")
+                    dispatch("auth/logout", {}, { root: true });
+                }
+            }
         },
 
-        async getNewBooks({ commit }) {
-            const response = await axios.get(`${backendUrl}/books/newbooks`);
-            commit("setNewBooks", response.data);
+        async getNewBooks({ dispatch, commit }) {
+            try {
+                const response = await axios.get(`${backendUrl}/books/newbooks`);
+                commit("setNewBooks", response.data);
+            } catch (e) {
+                // TODO: Implement with alert system
+                if (e.response.status === 401) {
+                    console.log("Token Expired. Please log back in and refresh the page.")
+                    dispatch("auth/logout", {}, { root: true });
+                }
+            }
         },
 
-        async getPopularBooks({ commit }) {
-            const response = await axios.get(`${backendUrl}/books/popularbooks`);
-            commit("setPopularBooks", response.data);
+        async getPopularBooks({ dispatch, commit }) {
+            try {
+                const response = await axios.get(`${backendUrl}/books/popularbooks`);
+                commit("setPopularBooks", response.data);
+            } catch (e) {
+                // TODO: Implement with alert system
+                if (e.response.status === 401) {
+                    console.log("Token Expired. Please log back in and refresh the page.")
+                    dispatch("auth/logout", {}, { root: true });
+                }
+            }
         },
     }
 }

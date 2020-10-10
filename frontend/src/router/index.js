@@ -62,7 +62,10 @@ const routes = [{
     {
         path: "/auth/logout",
         name: "logout",
-        component: Logout
+        component: Logout,
+        meta: {
+            requiresAuth: true
+        }
     }
 ];
 

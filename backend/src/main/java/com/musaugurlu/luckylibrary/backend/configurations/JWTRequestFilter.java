@@ -8,6 +8,8 @@ package com.musaugurlu.luckylibrary.backend.configurations;
 
 import com.musaugurlu.luckylibrary.backend.services.AuthUserDetails;
 import com.musaugurlu.luckylibrary.backend.services.AuthUserDetailsService;
+import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.JwtException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -36,21 +38,30 @@ public class JWTRequestFilter extends OncePerRequestFilter {
         String email = null;
         String token = null;
 
-        if(authHeader != null && !authHeader.equals("") && authHeader.startsWith("Bearer ")) {
-            token = authHeader.substring(7);
-            email = jwtUtil.getEmailFromToken(token);
+        try {
+            if(authHeader != null && !authHeader.equals("") && authHeader.startsWith("Bearer ")) {
+                token = authHeader.substring(7);
+                email = jwtUtil.getEmailFromToken(token);
+            }
+
+            if(email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+                UserDetails userDetails = this.authUserDetailsService.loadUserByUsername(email);
+                if(jwtUtil.validateToken(token, userDetails)) {
+                    UsernamePasswordAuthenticationToken uPAuthToken = new UsernamePasswordAuthenticationToken(
+                            userDetails,null,userDetails.getAuthorities());
+                    uPAuthToken.setDetails(
+                            new WebAuthenticationDetailsSource().buildDetails(request));
+                    SecurityContextHolder.getContext().setAuthentication(uPAuthToken);
+                }
+            }
+        } catch (ExpiredJwtException e) {
+            response.setStatus(401);
+            return;
+        } catch (JwtException e) {
+            response.setStatus(403);
+            return;
         }
 
-        if(email != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = this.authUserDetailsService.loadUserByUsername(email);
-            if(jwtUtil.validateToken(token, userDetails)) {
-                UsernamePasswordAuthenticationToken uPAuthToken = new UsernamePasswordAuthenticationToken(
-                        userDetails,null,userDetails.getAuthorities());
-                uPAuthToken.setDetails(
-                        new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(uPAuthToken);
-            }
-        }
         filterChain.doFilter(request, response);
     }
 }
