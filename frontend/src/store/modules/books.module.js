@@ -31,10 +31,9 @@ export const books = {
                 const response = await axios.get(`${backendUrl}/categories`);
                 commit("setCategories", response.data);
             } catch (e) {
-                // TODO: Implement with alert system
                 if (e.response.status === 401) {
-                    console.log("Token Expired. Please log back in and refresh the page.")
                     dispatch("auth/logout", {}, { root: true });
+                    dispatch("alert/error", "Token Expired. Please log back in and refresh the page.", { root: true });
                 }
             }
         },
@@ -44,10 +43,9 @@ export const books = {
                 const response = await axios.get(`${backendUrl}/books/numOfBooks`);
                 commit("setNumOfBooks", response.data);
             } catch (e) {
-                // TODO: Implement with alert system
                 if (e.response.status === 401) {
-                    console.log("Token Expired. Please log back in and refresh the page.")
                     dispatch("auth/logout", {}, { root: true });
+                    dispatch("alert/error", "Token Expired. Please log back in and refresh the page.", { root: true });
                 }
             }
         },
@@ -57,10 +55,9 @@ export const books = {
                 const response = await axios.get(`${backendUrl}/books/newbooks`);
                 commit("setNewBooks", response.data);
             } catch (e) {
-                // TODO: Implement with alert system
                 if (e.response.status === 401) {
-                    console.log("Token Expired. Please log back in and refresh the page.")
                     dispatch("auth/logout", {}, { root: true });
+                    dispatch("alert/error", "Token Expired. Please log back in and refresh the page.", { root: true });
                 }
             }
         },
@@ -70,10 +67,9 @@ export const books = {
                 const response = await axios.get(`${backendUrl}/books/popularbooks`);
                 commit("setPopularBooks", response.data);
             } catch (e) {
-                // TODO: Implement with alert system
                 if (e.response.status === 401) {
-                    console.log("Token Expired. Please log back in and refresh the page.")
                     dispatch("auth/logout", {}, { root: true });
+                    dispatch("alert/error", "Token Expired. Please log back in and refresh the page.", { root: true });
                 }
             }
         },
