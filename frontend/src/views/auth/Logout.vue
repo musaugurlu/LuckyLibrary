@@ -13,7 +13,9 @@
 export default {
     mounted() {
         this.$store.dispatch('auth/logout');
+        this.$store.dispatch('alert/success', 'You have successfully been logged out')
         this.$router.push("/");
+
     },
 }
 </script>

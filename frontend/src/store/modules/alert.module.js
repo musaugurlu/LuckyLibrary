@@ -7,32 +7,61 @@
 export const alert = {
     namespaced: true,
     state: {
-        type: null,
-        message: null
+        show: false,
+        title: '',
+        type: '',
+        message: ''
     },
     actions: {
-        success({ commit }, message) {
-            commit('success', message);
-        },
         error({ commit }, message) {
-            commit('error', message);
+            commit('showAlert', {
+                title: 'Error',
+                type: 'error',
+                message: message
+            })
         },
-        clear({ commit }) {
-            commit('clear');
+        success({ commit }, message) {
+            commit('showAlert', {
+                title: 'Success',
+                type: 'success',
+                message: message
+            })
+        },
+        warning({ commit }, message) {
+            commit('showAlert', {
+                title: 'Warning',
+                type: 'warning',
+                message: message
+            })
+        },
+        info({ commit }, message) {
+            commit('showAlert', {
+                title: 'Information',
+                type: 'info',
+                message: message
+            })
+        },
+        alert({ commit }, message) {
+            commit('showAlert', {
+                title: 'Notification',
+                type: 'alert',
+                message: message
+            })
         }
+
     },
     mutations: {
-        success(state, message) {
-            state.type = 'alert-success';
-            state.message = message;
+        showAlert(state, { title, type, message }) {
+            state.show = true
+            state.title = title
+            state.type = type
+            state.message = message
         },
-        error(state, message) {
-            state.type = 'alert-danger';
-            state.message = message;
-        },
-        clear(state) {
-            state.type = null;
-            state.message = null;
+        hideAlert(state) {
+            state.show = false
+            state.title = null
+            state.type = null
+            state.message = null
         }
     }
 }

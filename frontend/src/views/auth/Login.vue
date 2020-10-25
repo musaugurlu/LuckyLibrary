@@ -15,7 +15,6 @@
                         </div>
                         <div class="login_form">
                             <form @submit.prevent="handleSubmit">
-                                <span v-if="alert" class="alert alert-danger">{{ alert }}</span>
                                 <p>&nbsp;</p>
                                 <input type="text" name="email" placeholder="Email" v-model="email">
                                 <input type="password" name="password" placeholder="Password" v-model="password">
@@ -31,7 +30,7 @@
 </template>
 
 <script>
-
+import { mapActions } from 'vuex'
 export default {
     data () {
         return {
@@ -43,10 +42,6 @@ export default {
     computed: {
         loggedIn () {
             return this.$store.getters['auth/isLoggedIn'];
-        },
-
-        alert() {
-            return this.$store.state.alert.message;
         }
     },
     created () {
@@ -54,13 +49,17 @@ export default {
         this.$store.dispatch('auth/logout');
     },
     methods: {
+        ...mapActions('alert', ['error', 'success']),
         handleSubmit () {
             this.submitted = true;
             const { email, password } = this;
             if (email && password) {
                 this.$store.dispatch('auth/login', { email, password })
-                    .then(() => this.$router.push('/'))
-                    .catch(err => {console.log(err)})
+                    .then(() => { 
+                        this.success("Successfully logged in.")
+                        this.$router.push('/') 
+                    })
+                    .catch(err => { this.error(err.message) })
             }
         }
     }

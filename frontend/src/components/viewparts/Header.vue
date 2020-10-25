@@ -17,14 +17,14 @@
                     <div class="header__nav">
                         <nav class="header__menu mobile-menu">
                             <ul>
-                                <router-link tag="li" to="/"><a>Home</a></router-link>
+                                <router-link tag="li" to="/" :class="isActive('/') ? 'active' : ''"><a>Home</a></router-link>
                                 <router-link tag="li" to="/books" :class="isActive('/book') ? 'active' : ''"><a>Books</a></router-link>
                                 <router-link tag="li" to="/categories" :class="isActive('/categor') ? 'active' : ''"><a>Categories</a></router-link>
                                 <router-link tag="li" to="/branches" :class="isActive('/branch') ? 'active' : ''"><a>Branches</a></router-link>
                             </ul>
                         </nav>
                         <div class="header__menu__right">
-                            <router-link v-if="loggedIn" to="/auth/logout" class="primary-btn"><i class="fa fa-user"></i> Logout</router-link>
+                            <router-link v-if="isLoggedIn" to="/auth/logout" class="primary-btn"><i class="fa fa-user"></i> Logout</router-link>
                             <router-link v-else to="/auth/login" class="primary-btn"><i class="fa fa-user"></i> Login</router-link>
                         </div>
                     </div>
@@ -40,7 +40,12 @@
 export default {
     methods: {
         isActive(path) {
-            return this.$route.path.indexOf(path) === 0;
+            if(path === '/') {
+                return path === this.$route.path
+            } else {
+                return this.$route.path.indexOf(path) === 0;    
+            }
+            
         }
     },
 
@@ -52,7 +57,7 @@ export default {
     },
 
     computed: {
-        loggedIn () { 
+        isLoggedIn () { 
             return this.$store.getters['auth/isLoggedIn'];
         }
     },

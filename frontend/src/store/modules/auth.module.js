@@ -14,7 +14,7 @@ export const auth = {
     state: {
         status: '',
         token: localStorage.getItem('token') || '',
-        user: {}
+        roles: []
     },
     actions: {
         login({ commit }, user) {
@@ -23,10 +23,11 @@ export const auth = {
                 authService.login(user)
                     .then(response => {
                         const token = response.data.token;
-                        const user = response.data.user;
+                        const roles = response.data.roles;
                         localStorage.setItem('token', token);
                         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-                        commit('auth_success', token, user);
+                        commit('setRoles', roles);
+                        commit('auth_success', token);
                         resolve(response);
                     }).catch(error => {
                         commit('auth_error');
@@ -49,10 +50,9 @@ export const auth = {
         auth_request(state) {
             state.status = 'loading'
         },
-        auth_success(state, token, user) {
+        auth_success(state, token) {
             state.status = 'success'
             state.token = token
-            state.user = user
         },
         auth_error(state) {
             state.status = 'error'
@@ -61,6 +61,9 @@ export const auth = {
             state.status = ''
             state.token = ''
         },
+        setRoles(state, roles) {
+            state.roles = roles
+        }
     },
     getters: {
         isLoggedIn: state => !!state.token,

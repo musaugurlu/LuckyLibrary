@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="listing__hero__btns">
+                    <div class="listing__hero__btns" v-if="isLoggedIn">
                         <a href="#" class="primary-btn share-btn"><i class="fa fa-mail-reply"></i> Hold</a>
                         <a @click="checkOutBook()" href="#" class="primary-btn"><i class="fa fa-bookmark"></i> Check Out</a>
                     </div>
@@ -44,6 +44,11 @@ export default {
     methods: {
         checkOutBook() {
             this.$store.dispatch('users/getAll');
+        }
+    },
+    computed: {
+        isLoggedIn() {
+            return this.$store.getters['auth/isLoggedIn'];
         }
     },
 }
